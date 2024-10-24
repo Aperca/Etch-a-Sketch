@@ -12,11 +12,22 @@ function createGrid(size) {
         cell.style.width = `${squareSize}px`;
         cell.style.height = `${squareSize}px`;
 
-        // Hover effect to change color
+        let darkenLevel=0;
+            // Random color generator
+        function getRandomRGB(){
+            const r= Math.floor(Math.random()*156)+100;
+            const g= Math.floor(Math.random()*156)+100;
+            const b= Math.floor(Math.random()*156)+100;
+            return `rgb(${r},${g},${b})`;
+        }
+        let darkness = 0;
+
         cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = 'purple';
+            cell.style.backgroundColor = getRandomRGB();
+            darkness += 0.1;  
+            cell.style.opacity = Math.min(darkness, 1);  
         });
-        
+
         container.appendChild(cell);
     }
 }
